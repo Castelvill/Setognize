@@ -1,10 +1,15 @@
 import SafeAreaViewUpgraded from './components/SafeAreaViewUpgraded';
 import {useState} from 'react';
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
+import { useTensorflowModel } from 'react-native-fast-tflite';
+import {launchImageLibrary} from 'react-native-image-picker';
+import { useResizeImage } from './hooks/useResizeImage';
+import { useToRGBArray } from './hooks/useToRGBArray';
 
 export default function HomeScreen() {
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string>("");
   const [top5sets, setTop5sets] = useState<string[] | null>(null);
+  const plugin = useTensorflowModel(require('./model/model.tflite'))
 
   const recognizeImage = async () =>{
     if(!image){
@@ -12,24 +17,20 @@ export default function HomeScreen() {
       return
     }
     setTop5sets(["Processing..."])
+    const resized = await useResizeImage({uri: image, width: 96, height: 96})
+    const arrayBuffer = await useToRGBArray(resized!)
+    const outputData = await plugin.model?.run([arrayBuffer])
+    console.log(outputData)
     //setTop5sets(await getPredictions(image))
     console.log("Prediction ready.")
   };
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    // let result = await ImagePicker.launchImageLibraryAsync({
-    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //   allowsEditing: true,
-    //   //aspect: [1, 1],
-    //   quality: 1,
-    // });
+    const result = await launchImageLibrary({mediaType: "photo"});
 
-    //console.log(result);
-
-    // if (!result.canceled) {
-    //   setImage(result.assets[0].uri);
-    // }
+     if (result !== undefined && result.assets !== undefined && result.assets.length > 0) {
+       setImage(result.assets[0].uri!);
+     }
   };
 
   return (
