@@ -5,6 +5,7 @@ import { useTensorflowModel } from 'react-native-fast-tflite';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { useResizeImage } from './hooks/useResizeImage';
 import { useToRGBArray } from './hooks/useToRGBArray';
+import { useCreateTop5Ids } from './hooks/useCreateTop5Ids';
 
 export default function HomeScreen() {
   const [image, setImage] = useState<string>("");
@@ -17,11 +18,13 @@ export default function HomeScreen() {
       return
     }
     setTop5sets(["Processing..."])
-    const resized = await useResizeImage({uri: image, width: 96, height: 96})
+    console.log("Processing model...")
+    const resized = await useResizeImage({uri: image, width: 128, height: 128})
     const arrayBuffer = await useToRGBArray(resized!)
-    const outputData = await plugin.model?.run([arrayBuffer])
-    console.log(outputData)
-    //setTop5sets(await getPredictions(image))
+    //console.log(arrayBuffer!)
+    const outputData = plugin.model!.runSync([arrayBuffer])
+    const predictionArray = outputData![0]
+    setTop5sets(await useCreateTop5Ids(predictionArray as Float32Array))
     console.log("Prediction ready.")
   };
 
