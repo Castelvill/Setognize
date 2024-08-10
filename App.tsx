@@ -19,13 +19,19 @@ export default function HomeScreen() {
     }
     setTop5sets(["Processing..."])
     console.log("Processing model...")
-    const resized = await useResizeImage({uri: image, width: 128, height: 128})
-    const arrayBuffer = await useToRGBArray(resized!)
+    const imageSize = 224
+    const resized = await useResizeImage({uri: image, width: imageSize, height: imageSize})
+    const arrayBuffer = await useToRGBArray({uri: resized!, width: imageSize, height: imageSize})
     //console.log(arrayBuffer!)
+
+    var startTime = performance.now()
     const outputData = plugin.model!.runSync([arrayBuffer])
+    var endTime = performance.now()
+    console.log("Prediction time: " + ((endTime - startTime)/1000).toFixed(2) + "s")
+    
     const predictionArray = outputData![0]
     setTop5sets(await useCreateTop5Ids(predictionArray as Float32Array))
-    console.log("Prediction ready.")
+    //console.log("Prediction ready.")
   };
 
   const pickImage = async () => {
