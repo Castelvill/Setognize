@@ -46,8 +46,8 @@ export default function HomeScreen() {
     <SafeAreaViewUpgraded style={styles.mainStyle}>
     {/* <Text className="color-green-700">aaaaa</Text> */}
       {image && <Image source={{ uri: image }} resizeMode = 'contain' style={styles.imageStyle}/>}
-    <Button title="Pick an image from the galery" onPress={pickImage} />
-    <Button title="Recognize Set" onPress={recognizeImage}/>
+    <Button title="Wybierz zdjęcie z galerii"/*title="Pick an image from the galery"*/ onPress={pickImage} />
+    <Button title="Rozpoznaj zestaw LEGO" onPress={recognizeImage}/>
     {top5sets && top5sets.length > 0 && (
         <View style={styles.top5Container}>
           {top5sets.map((name, index) => (
