@@ -2,10 +2,10 @@ import SafeAreaViewUpgraded from './components/SafeAreaViewUpgraded';
 import {useState} from 'react';
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
 import { useTensorflowModel } from 'react-native-fast-tflite';
-import {launchImageLibrary} from 'react-native-image-picker';
 import { useResizeImage } from './hooks/useResizeImage';
 import { useToRGBArray } from './hooks/useToRGBArray';
 import { useCreateTop5Ids } from './hooks/useCreateTop5Ids';
+import ImagePicker from 'react-native-image-crop-picker';
 
 export default function HomeScreen() {
   const [image, setImage] = useState<string>("");
@@ -35,11 +35,15 @@ export default function HomeScreen() {
   };
 
   const pickImage = async () => {
-    const result = await launchImageLibrary({mediaType: "photo"});
-
-     if (result !== undefined && result.assets !== undefined && result.assets.length > 0) {
-       setImage(result.assets[0].uri!);
-     }
+    ImagePicker.openPicker({
+      cropping: true,
+      mediaType: 'photo',
+      freeStyleCropEnabled: true
+    }).then(image => {
+      setImage(image.path);
+    }).catch(error =>{ console.log("error in catch block", error.code) 
+      if (error.code === 'E_PICKER_CANCELLED') { return false; }
+    });
   };
 
   return (
