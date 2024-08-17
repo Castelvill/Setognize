@@ -1,6 +1,58 @@
 import { Image } from "react-native";
 
-const setIDs : string[] = [
+const allSets : string[] = ['2022-ford-gt-42154',
+    '501st-clone-troopers-battle-pack-75345',
+    'a-frame-cabin-21338',
+    'alpine-lodge-10325',
+    'birdhouse-31143',
+    'bugatti-bolide-42151',
+    'captain-rex-helmet-75349',
+    'concorde-10318',
+    'coruscant-guard-gunship-75354',
+    'corvette-10321',
+    'cozy-house-31139',
+    'disney-castle-43222',
+    'disney-hocus-pocus-the-sanderson-sisters-cottage-21341',
+    'dried-flower-centrepiece-10314',
+    'eldorado-fortress-10320',
+    'emperor-s-throne-room-diorama-75352',
+    'endor-speeder-chase-diorama-75353',
+    'executor-super-star-destroyer-75356',
+    'exotic-parrot-31136',
+    'expecto-patronum-76414',
+    'fantastical-tree-house-71461',
+    'ghost-phantom-ii-75357',
+    'gringotts-wizarding-bank-collectors-edition-76417',
+    'himeji-castle-21060',
+    'hogwarts-castle-and-grounds-76419',
+    'jazz-club-10312',
+    'land-rover-classic-defender-90-10317',
+    'mandalorian-fang-fighter-vs-tie-interceptor-75348',
+    'nasa-mars-rover-perseverance-42158',
+    'nascar-next-gen-chevrolet-camaro-zl1-42153',
+    'peugeot-9x8-24h-le-mans-hybrid-hypercar-42156',
+    'pirate-snub-fighter-75346',
+    'ski-and-climbing-center-60366',
+    'snow-groomer-42148',
+    'space-roller-coaster-31142',
+    'space-shuttle-31134',
+    'tales-of-the-space-age-21340',
+    'the-insect-collection-21342',
+    'the-lord-of-the-rings-rivendell-10316',
+    'the-orient-express-train-21344',
+    'the-sword-outpost-21244',
+    'tie-bomber-75347',
+    'tranquil-garden-10315',
+    'up-house-43217',
+    'up-scaled-lego-minifigure-40649',
+    'venator-class-republic-attack-cruiser-75367',
+    'viking-village-21343',
+    'walt-disney-tribute-camera-43230',
+    'wildflower-bouquet-10313',
+    'x-wing-starfighter-75355'
+]
+
+const idsOfSets : string[] = [
     "42154", "75345", "21338", "10325", "31143", "42151", 
     "75349", "10318", "75354", "10321", "31139", "43222", 
     "21341", "10314", "10320", "75352", "75353", "75356", 
@@ -12,7 +64,7 @@ const setIDs : string[] = [
     "10313", "75355"
 ]
 
-const allSets: { [key: string]: string } = {
+const namesOfSets: { [key: string]: string } = {
     "42154": "2022 ford gt",
     "75345": "501st clone troopers battle pack",
     "21338": "a frame cabin",
@@ -63,9 +115,9 @@ const allSets: { [key: string]: string } = {
     "43230": "walt disney tribute camera",
     "10313": "wildflower bouquet",
     "75355": "x wing starfighter"
-  }
+}
 
-const setImagePaths: { [key: string]: any } = {
+const imagePathsToSets: { [key: string]: any } = {
     "42154": require('../assets/lego_sets/42154.png'),
     "75345": require('../assets/lego_sets/75345.png'),
     "21338": require('../assets/lego_sets/21338.png'),
@@ -118,7 +170,7 @@ const setImagePaths: { [key: string]: any } = {
     "75355": require('../assets/lego_sets/75355.png'),
 };
 
-export const useCreateTop5Ids = async (predictionArray: Float32Array): Promise<{text: string[], images: string[]}> =>{
+export const useCreateTop5Ids = async (predictionArray: Float32Array): Promise<{text: string[], images: string[], links: string[]}> =>{
     // Create an array of indices [0, 1, 2, ..., n-1]
     const indices = Array.from(predictionArray.keys());
 
@@ -130,13 +182,16 @@ export const useCreateTop5Ids = async (predictionArray: Float32Array): Promise<{
 
     const top5indicesCut = top5indices.filter(index => predictionArray[index]*100 >= 1)
 
-    const images = top5indicesCut.map(index => Image.resolveAssetSource(setImagePaths[setIDs[index]]).uri)
+    const images = top5indicesCut.map(index => Image.resolveAssetSource(imagePathsToSets[idsOfSets[index]]).uri)
+
+    const links = top5indicesCut.map(index => "https://www.lego.com/en-pl/product/" + allSets[index])
 
     return {
         text: top5indicesCut.map(
-            index => "ID: " + setIDs[index] + "\nNazwa: " + allSets[setIDs[index]]
+            index => "ID: " + idsOfSets[index] + "\nNazwa: " + namesOfSets[idsOfSets[index]]
             + "\nPewność: " + (predictionArray[index]*100).toFixed(0).toString() + "%"
         ),
-        images: images
+        images: images,
+        links: links
     };
 }

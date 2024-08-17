@@ -1,6 +1,6 @@
 import SafeAreaViewUpgraded from './components/SafeAreaViewUpgraded';
 import { useState } from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity, ScrollView, ActivityIndicator} from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity, ScrollView, ActivityIndicator, Linking} from 'react-native';
 import { useTensorflowModel } from 'react-native-fast-tflite';
 import { useResizeImage } from './hooks/useResizeImage';
 import { useToRGBArray } from './hooks/useToRGBArray';
@@ -13,6 +13,7 @@ export default function HomeScreen() {
   const [processing, setProcessing] = useState<boolean>(false);
   const [top5sets, setTop5sets] = useState<string[] | null>(null);
   const [top5images, setTop5images] = useState<string[] | null>(null);
+  const [top5links, setTop5links] = useState<string[] | null>(null);
   const plugin = useTensorflowModel(require('./model/model.tflite'))
 
   const recognizeImage = async () =>{
@@ -20,26 +21,25 @@ export default function HomeScreen() {
       console.log("There's no image to recognize.")
       return
     }
+
     setProcessing(true)
     setTop5sets([])
     console.log("Processing model...")
     const imageSize = 224
     const resized = await useResizeImage({uri: image, width: imageSize, height: imageSize})
     const arrayBuffer = await useToRGBArray({uri: resized!, width: imageSize, height: imageSize})
-    //console.log(arrayBuffer!)
 
     var startTime = performance.now()
     const outputData = plugin.model!.runSync([arrayBuffer])
     var endTime = performance.now()
     console.log("Prediction time: " + ((endTime - startTime)/1000).toFixed(2) + "s")
-    
     setProcessing(false)
 
     const predictionArray = outputData![0]
     const predictedSets = await useCreateTop5Ids(predictionArray as Float32Array)
     setTop5sets(predictedSets.text)
     setTop5images(predictedSets.images)
-    //console.log("Prediction ready.")
+    setTop5links(predictedSets.links)
   };
 
   const pickImage = async () => {
@@ -83,12 +83,12 @@ export default function HomeScreen() {
       {top5sets && top5sets.length > 0 && top5images && top5images.length > 0 && (
         <ScrollView style={styles.top5Container}>
           {top5sets.map((name, index) => (
-            <View style={styles.top5element} key={index}>
-              <Image source={{uri:top5images[index]}} resizeMode = 'contain' style={styles.top5image}/>
-              <View style={styles.top5TextContain}>
-                <Text  style={styles.top5Text}>{name}</Text>
-              </View>
-            </View>
+              <TouchableOpacity onPress={() => top5links && top5links.length > index && Linking.openURL(top5links[index])} style={styles.top5element} key={index} activeOpacity={0.6}>
+                <Image source={{uri:top5images[index]}} resizeMode = 'contain' style={styles.top5image}/>
+                <View style={styles.top5TextContain}>
+                  <Text style={styles.top5Text}>{name}</Text>
+                </View>
+              </TouchableOpacity>
           ))}
         </ScrollView>
       )}
@@ -164,7 +164,10 @@ const styles = StyleSheet.create({
   },
   top5element: {
     flexDirection: "row",
-    marginBottom: 10
+    marginBottom: 10,
+    backgroundColor: '#1e1e1e',
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
   },
   top5TextContain: {
     flex: 1,
@@ -176,9 +179,8 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   top5image: {
-    width: 70,
-    height: 70,
+    width: 100,
+    height: 100,
     marginRight: 10,
-    //borderRadius: 10,
   },
 })
