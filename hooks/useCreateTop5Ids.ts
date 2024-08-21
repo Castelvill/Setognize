@@ -118,56 +118,56 @@ const namesOfSets: { [key: string]: string } = {
 }
 
 const imagePathsToSets: { [key: string]: any } = {
-    "42154": require('../assets/lego_sets/42154.png'),
-    "75345": require('../assets/lego_sets/75345.png'),
-    "21338": require('../assets/lego_sets/21338.png'),
-    "10325": require('../assets/lego_sets/10325.png'),
-    "31143": require('../assets/lego_sets/31143.png'),
-    "42151": require('../assets/lego_sets/42151.png'),
-    "75349": require('../assets/lego_sets/75349.png'),
-    "10318": require('../assets/lego_sets/10318.png'),
-    "75354": require('../assets/lego_sets/75354.png'),
-    "10321": require('../assets/lego_sets/10321.png'),
-    "31139": require('../assets/lego_sets/31139.png'),
-    "43222": require('../assets/lego_sets/43222.png'),
-    "21341": require('../assets/lego_sets/21341.png'),
-    "10314": require('../assets/lego_sets/10314.png'),
-    "10320": require('../assets/lego_sets/10320.png'),
-    "75352": require('../assets/lego_sets/75352.png'),
-    "75353": require('../assets/lego_sets/75353.png'),
-    "75356": require('../assets/lego_sets/75356.png'),
-    "31136": require('../assets/lego_sets/31136.png'),
-    "76414": require('../assets/lego_sets/76414.png'),
-    "71461": require('../assets/lego_sets/71461.png'),
-    "75357": require('../assets/lego_sets/75357.png'),
-    "76417": require('../assets/lego_sets/76417.png'),
-    "21060": require('../assets/lego_sets/21060.png'),
-    "76419": require('../assets/lego_sets/76419.png'),
-    "10312": require('../assets/lego_sets/10312.png'),
-    "10317": require('../assets/lego_sets/10317.png'),
-    "75348": require('../assets/lego_sets/75348.png'),
-    "42158": require('../assets/lego_sets/42158.png'),
-    "42153": require('../assets/lego_sets/42153.png'),
-    "42156": require('../assets/lego_sets/42156.png'),
-    "75346": require('../assets/lego_sets/75346.png'),
-    "60366": require('../assets/lego_sets/60366.png'),
-    "42148": require('../assets/lego_sets/42148.png'),
-    "31142": require('../assets/lego_sets/31142.png'),
-    "31134": require('../assets/lego_sets/31134.png'),
-    "21340": require('../assets/lego_sets/21340.png'),
-    "21342": require('../assets/lego_sets/21342.png'),
-    "10316": require('../assets/lego_sets/10316.png'),
-    "21344": require('../assets/lego_sets/21344.png'),
-    "21244": require('../assets/lego_sets/21244.png'),
-    "75347": require('../assets/lego_sets/75347.png'),
-    "10315": require('../assets/lego_sets/10315.png'),
-    "43217": require('../assets/lego_sets/43217.png'),
-    "40649": require('../assets/lego_sets/40649.png'),
-    "75367": require('../assets/lego_sets/75367.png'),
-    "21343": require('../assets/lego_sets/21343.png'),
-    "43230": require('../assets/lego_sets/43230.png'),
-    "10313": require('../assets/lego_sets/10313.png'),
-    "75355": require('../assets/lego_sets/75355.png'),
+    "42154": require('../assets/lego_sets/42154.png'), //https://brickset.com/article/92030/review-42154-ford-gt
+    "75345": require('../assets/lego_sets/75345.png'), //https://brickset.com/article/87993/review-75345-501st-clone-troopers-battle-pack 
+    "21338": require('../assets/lego_sets/21338.png'), //https://brickset.com/article/90167/review-21338-a-frame-cabin 
+    "10325": require('../assets/lego_sets/10325.png'), //https://brickset.com/article/100244/review-10325-alpine-lodge 
+    "31143": require('../assets/lego_sets/31143.png'), //https://brickset.com/article/88839/review-31143-birdhouse
+    "42151": require('../assets/lego_sets/42151.png'), //https://brickset.com/article/86836/review-42151-bugatti-bolide 
+    "75349": require('../assets/lego_sets/75349.png'), //https://brickset.com/article/90437/review-75349-captain-rex-helmet 
+    "10318": require('../assets/lego_sets/10318.png'), //https://brickset.com/article/98631/review-10318-concorde
+    "75354": require('../assets/lego_sets/75354.png'), //https://brickset.com/article/100180/review-75354-coruscant-guard-gunship
+    "10321": require('../assets/lego_sets/10321.png'), //https://brickset.com/article/98024/review-10321-corvette
+    "31139": require('../assets/lego_sets/31139.png'), //https://brickset.com/article/92285/review-31139-cozy-house
+    "43222": require('../assets/lego_sets/43222.png'), //https://www.lego.com/en-pl/product/disney-castle-43222
+    "21341": require('../assets/lego_sets/21341.png'), //https://brickset.com/article/97660/review-21341-disney-hocus-pocus-the-sanderson-sisters-cottage
+    "10314": require('../assets/lego_sets/10314.png'), //https://www.lego.com/en-pl/product/dried-flower-centrepiece-10314
+    "10320": require('../assets/lego_sets/10320.png'), //https://brickset.com/article/97564/review-10320-eldorado-fortress
+    "75352": require('../assets/lego_sets/75352.png'), //https://brickset.com/article/93433/review-75352-emperor-s-throne-room 
+    "75353": require('../assets/lego_sets/75353.png'), //https://brickset.com/article/93609/review-75353-endor-speeder-chase
+    "75356": require('../assets/lego_sets/75356.png'), //https://brickset.com/article/94734/review-75356-executor-super-star-destroyer 
+    "31136": require('../assets/lego_sets/31136.png'), //https://brickset.com/article/92652/quick-look-31136-exotic-parrot
+    "76414": require('../assets/lego_sets/76414.png'), //https://www.lego.com/en-pl/product/expecto-patronum-76414
+    "71461": require('../assets/lego_sets/71461.png'), //https://www.lego.com/en-pl/product/fantastical-tree-house-71461
+    "75357": require('../assets/lego_sets/75357.png'), //https://brickset.com/article/99293/review-75357-ghost-phantom-ii 
+    "76417": require('../assets/lego_sets/76417.png'), //https://brickset.com/article/99360/review-76417-gringotts-wizarding-bank-collectors-edition
+    "21060": require('../assets/lego_sets/21060.png'), //https://brickset.com/article/98466/review-21060-himeji-castle 
+    "76419": require('../assets/lego_sets/76419.png'), //https://brickset.com/article/101506/review-76419-hogwarts-castle-and-grounds
+    "10312": require('../assets/lego_sets/10312.png'), //https://brickset.com/article/86696/review-10312-jazz-club 
+    "10317": require('../assets/lego_sets/10317.png'), //https://brickset.com/article/92683/review-10317-land-rover-defender-90 
+    "75348": require('../assets/lego_sets/75348.png'), //https://brickset.com/article/99459/review-75348-mandalorian-fang-fighter-vs-tie-interceptor 
+    "42158": require('../assets/lego_sets/42158.png'), //https://brickset.com/article/95675/review-42158-nasa-mars-perseverance-rover
+    "42153": require('../assets/lego_sets/42153.png'), //https://brickset.com/article/92837/review-42153-nascar-chevrolet-camaro-zl1
+    "42156": require('../assets/lego_sets/42156.png'), //https://brickset.com/article/94838/review-42156-peugeot-9x8-hypercar
+    "75346": require('../assets/lego_sets/75346.png'), //https://brickset.com/article/93610/review-75346-pirate-snub-fighter
+    "60366": require('../assets/lego_sets/60366.png'), //https://www.lego.com/en-pl/product/ski-and-climbing-center-60366
+    "42148": require('../assets/lego_sets/42148.png'), //https://brickset.com/article/88730/review-42148-snow-groomer
+    "31142": require('../assets/lego_sets/31142.png'), //https://brickset.com/article/98217/review-31142-space-roller-coaster 
+    "31134": require('../assets/lego_sets/31134.png'), //https://www.lego.com/en-pl/product/space-shuttle-31134
+    "21340": require('../assets/lego_sets/21340.png'), //https://brickset.com/article/95045/review-21340-tales-of-the-space-age
+    "21342": require('../assets/lego_sets/21342.png'), //https://www.lego.com/en-pl/product/the-insect-collection-21342
+    "10316": require('../assets/lego_sets/10316.png'), //https://brickset.com/article/90675/review-10316-the-lord-of-the-rings-rivendell
+    "21344": require('../assets/lego_sets/21344.png'), //https://www.lego.com/en-pl/product/the-orient-express-train-21344
+    "21244": require('../assets/lego_sets/21244.png'), //https://www.youtube.com/watch?v=ssFE_GZZNjI
+    "75347": require('../assets/lego_sets/75347.png'), //https://brickset.com/article/86892/review-75347-tie-bomber
+    "10315": require('../assets/lego_sets/10315.png'), //https://brickset.com/article/98465/review-10315-tranquil-garden
+    "43217": require('../assets/lego_sets/43217.png'), //https://brickset.com/article/92792/review-43217-up-house
+    "40649": require('../assets/lego_sets/40649.png'), //https://brickset.com/article/96113/review-40649-up-scaled-lego-minifigure
+    "75367": require('../assets/lego_sets/75367.png'), //https://brickset.com/article/99978/review-75367-venator-class-republic-attack-cruiser
+    "21343": require('../assets/lego_sets/21343.png'), //https://brickset.com/article/99450/review-21343-viking-village
+    "43230": require('../assets/lego_sets/43230.png'), //https://brickset.com/article/100687/review-43230-walt-disney-tribute-camera
+    "10313": require('../assets/lego_sets/10313.png'), //https://www.lego.com/en-pl/product/wildflower-bouquet-10313
+    "75355": require('../assets/lego_sets/75355.png'), //https://brickset.com/article/94966/review-75355-x-wing-starfighter 
 };
 
 export const useCreateTop5Ids = async (predictionArray: Float32Array): Promise<{text: string[], images: string[], links: string[]}> =>{
