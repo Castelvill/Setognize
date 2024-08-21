@@ -99,8 +99,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   mainStyle: {
     flex: 1,
-    //alignItems: "center",
-    //justifyContent: "center",
     backgroundColor: "#000000"
   },
   button: {
@@ -153,7 +151,6 @@ const styles = StyleSheet.create({
   },
   altTextStyle: {
     fontSize: 28,
-    //lineHeight: 24,
     fontWeight: '600',
     color: '#cbcbcb',
     textAlign: 'center',
