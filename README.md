@@ -1,3 +1,7 @@
+# Author
+
+Mateusz Matkowski
+
 # About
 
 This is a [**React Native**](https://reactnative.dev) project for LEGO sets classification. It is using a TensorFlow Lite model with the help of [react-native-fast-tflite](https://github.com/mrousavy/react-native-fast-tflite) library. It can predict 50 different LEGO sets with the validation accuracy of 96%. After choosing an image from the galery (left button) and clicking the right button it returns up to 5 most similar sets to the input image.  
